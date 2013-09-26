@@ -23,6 +23,63 @@ register_nav_menu( 'sidebar', 'Sidebar Menu' );
 register_nav_menu( 'footer-1', 'Footer Menu 1' );
 register_nav_menu( 'footer-2', 'Footer Menu 2' );
 
+// ACF Customizations
+if( function_exists('acf_add_options_sub_page') )
+{
+    acf_add_options_sub_page( 'Chamber Information' );
+    acf_add_options_sub_page( 'Sidebar Settings' );
+    acf_add_options_sub_page( 'Signature Events' );
+    acf_add_options_sub_page( 'Social Media' );
+    acf_add_options_sub_page( 'Footer Content' );
+}
+// End ACF Customizations
+
+// Create custom post type for Events
+add_action( 'init', 'create_post_type_events' );
+function create_post_type_events() {
+    register_post_type( 'ahn_event',
+        array(
+            'labels' => array(
+                'name' => __( 'Events' ),
+                'singular_name' => __( 'Event' ),
+                'add_new_item' => 'Add New Event',
+                'edit_item' => 'Edit Event',
+                'view_item' => 'View Event',
+                'search_items' => 'Search Events',
+                'not_found' => 'No events found.',
+                'not_found_in_trash' => 'No events found in Trash.'
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'events')
+        )
+    );
+}
+// End create custom post type for Events
+
+// Create custom post type for Speakers
+add_action( 'init', 'create_post_type_speakers' );
+function create_post_type_speakers() {
+    register_post_type( 'ahn_speaker',
+        array(
+            'labels' => array(
+                'name' => __( 'Speakers' ),
+                'singular_name' => __( 'Speakers' ),
+                'add_new_item' => 'Add New Speaker',
+                'edit_item' => 'Edit Speaker',
+                'view_item' => 'View Speaker',
+                'search_items' => 'Search Speakers',
+                'not_found' => 'No speakers found.',
+                'not_found_in_trash' => 'No speakers found in Trash.'
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'speakers')
+        )
+    );
+}
+// End create custom post type for Speakers
+
 //widget support for a right sidebar
 register_sidebar(array(
   'name' => 'Right SideBar',
@@ -50,8 +107,8 @@ add_theme_support( 'post-thumbnails' );
 
 //custom featured image size
 if ( function_exists( 'add_theme_support' ) ) { 
-	// Generate a new thumbnail with our desired name and size
-	//add_image_size( 'projects-full', 560, 150, true );
+  // Generate a new thumbnail with our desired name and size
+  //add_image_size( 'projects-full', 560, 150, true );
 }
 
 //Apply do_shortcode() to widgets so that shortcodes will be executed in widgets

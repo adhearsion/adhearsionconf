@@ -43,6 +43,7 @@
 	<!-- Fonts
 	================================================== -->
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
 <?php wp_head(); ?>
 </head>
@@ -64,10 +65,9 @@
 					class="" />
 				</a>
 			</div>
-
 		</div>
 
-		<div class="twelve columns omega menu-primary-desktop">
+		<div class="twelve columns omega menu-primary-desktop container-wrapper">
 			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 			<div style="clear: both"></div>
 		</div>
