@@ -281,7 +281,7 @@ body {
     text-align: center;
     font-style: italic;
     color: #61c1e7;
-    text-shadow: 1px 1px 6px black;
+    /*text-shadow: 1px 1px 6px black;*/
 }
 
 .menu-primary-desktop {
@@ -290,7 +290,19 @@ body {
 
 #menu-header-menu li a, h1, h2, h3, h4, h5, h6 {
     font-family: 'Lato' !important;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5) !important;
+    /*text-shadow: 1px 1px 3px rgba(0,0,0,0.5) !important;*/
+    color: #800080;
+}
+
+#menu-header-menu li:hover  {
+    background: #eee;
+}
+
+#menu-header-menu li:hover a {
+    color: #B12BB1;
+}
+
+#menu-header-menu li.current-menu-item:hover a {
     color: #800080;
 }
 
@@ -314,7 +326,7 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0e0e0', endColorstr='#efefef',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
 }
 
-#menu-header-menu li.current-menu-item {
+#menu-header-menu li.current-menu-item, #menu-header-menu li.current-menu-item:hover {
     background: rgb(245,245,245); /* Old browsers */
     /* IE9 SVG, needs conditional override of 'filter' to 'none' */
     background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y1ZjVmNSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -331,6 +343,10 @@ body {
     margin: 0;
 }
 
+table.purple {
+    font-size: 1.2em;
+}
+
 table.purple th {
     font-weight: bold;
     padding-bottom: 6px;
@@ -340,7 +356,11 @@ table.purple tr {
     border-bottom: 1px solid #ccc;
 }
 
-table.purple tr td:first-of-type, table.purple tr td:last-of-type {
+table.purple tr td:first-of-type {
+    width: 24%;
+}
+
+table.purple tr td:last-of-type {
     width: 20%;
 }
 
@@ -364,7 +384,7 @@ table.purple .session p, table.purple .bio p {
     font-size: 0.8em;
     line-height: 1.5em;
     margin-bottom: 3px;
-    text-shadow: 1px 2px 3px rgba(137,70,145,0.6);
+    /*text-shadow: 1px 2px 3px rgba(137,70,145,0.6);*/
     font-style: italic;
 }
 
@@ -378,7 +398,7 @@ table.purple tr.odd {
 
 table.purple tr:hover a {
     color: rgb(50,124,186);
-    text-shadow: 1px 1px 2px rgb(97,193,231);
+    /*text-shadow: 1px 1px 2px rgb(97,193,231);*/
 }
 
 table.purple tr:hover {
@@ -391,7 +411,7 @@ table.purple tr:first-of-type:hover {
 
 table.purple a, article.subpage div.title h4.speakers a, article.subpage div.image a, div.address-card a {
     font-family: 'Lato';
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    /*text-shadow: 1px 1px 3px rgba(0,0,0,0.5);*/
     color: rgb(137,70,125);
 }
 
@@ -400,7 +420,7 @@ table.purple a, article.subpage div.title h4.speakers a {
 }
 
 table.purple a {
-    color: #800080;
+    color: #89467D;
 }
 
 table.purple a:hover, article.subpage div.title h4.speakers a:hover, article.subpage div.image a:hover, div.address-card a:hover {
@@ -483,4 +503,74 @@ article.subpage div.image {
 html body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing:antialiased;
+}
+
+div.sponsors {
+    width: 280px;
+    background: rgba(255,255,255,0.5);
+    padding: 10px;
+    border: 1px dotted #eee;
+    margin-bottom: 20px;
+    margin-left: -10px;
+    text-align: center;
+}
+
+div.sponsors:last-of-type {
+    margin-bottom: 0;
+}
+
+div.sponsors h3 {
+    color: #61c1e7;
+    /*text-shadow: 0px 0px 1px rgba(97,193,231,0.5) !important;*/
+    font-size: 1.6em;
+}
+
+div.sponsors div.sponsor {
+    margin: 10px 0;
+}
+
+div.sponsors div.sponsor:first-of-type {
+    margin-top: 0;
+}
+
+div.sponsors div.sponsor:last-of-type {
+    margin-bottom: 0;
+}
+
+body p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+body p:last-of-type {
+    margin-bottom: 0;
+}
+
+ol li {
+    font-size: 1.2em;
+}
+
+.main-sponsors table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 15px;
+    table-layout: fixed;
+}
+
+.main-sponsors table td {
+    width: 30%;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px dotted #ccc;
+    background-color: rgba(255,255,255,0.5);
+    padding: 5px;
+}
+
+.main-sponsors table td.empty {
+    background-color: transparent;
+    border: 0;
+}
+
+h3.sponsor-type {
+    margin-bottom: 0;
 }

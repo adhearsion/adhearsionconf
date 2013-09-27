@@ -5,12 +5,12 @@
  */
 
 /* mpress functions */
-include (TEMPLATEPATH.'/inc/theme-setup.php');
-include (TEMPLATEPATH.'/inc/template-loading.php');
-include (TEMPLATEPATH.'/inc/twitter-widget.php');
+// include (TEMPLATEPATH.'/inc/theme-setup.php');
+// include (TEMPLATEPATH.'/inc/template-loading.php');
+// include (TEMPLATEPATH.'/inc/twitter-widget.php');
 
 /* wpalchemy metaboxes class */
-include_once (TEMPLATEPATH.'/metaboxes/setup.php');
+// include_once (TEMPLATEPATH.'/metaboxes/setup.php');
 //include_once (TEMPLATEPATH.'/metaboxes/simple-spec.php');
 //include_once (TEMPLATEPATH.'/metaboxes/full-spec.php');
 //include_once (TEMPLATEPATH.'/metaboxes/checkbox-spec.php');
@@ -19,7 +19,7 @@ include_once (TEMPLATEPATH.'/metaboxes/setup.php');
 
 // drag and drop menu support
 register_nav_menu( 'primary', 'Primary Menu' );
-register_nav_menu( 'sidebar', 'Sidebar Menu' );
+// register_nav_menu( 'sidebar', 'Sidebar Menu' );
 register_nav_menu( 'footer-1', 'Footer Menu 1' );
 register_nav_menu( 'footer-2', 'Footer Menu 2' );
 
@@ -27,6 +27,7 @@ register_nav_menu( 'footer-2', 'Footer Menu 2' );
 if( function_exists('acf_add_options_sub_page') )
 {
     acf_add_options_sub_page( 'Site Information' );
+    acf_add_options_sub_page( 'Sponsors Sidebar' );
 }
 // End ACF Customizations
 
@@ -76,16 +77,42 @@ function create_post_type_speakers() {
 }
 // End create custom post type for Speakers
 
+// Create custom post type for Sponsors
+add_action( 'init', 'create_post_type_sponsors' );
+function create_post_type_sponsors() {
+    register_post_type( 'ahn_sponsor',
+        array(
+            'labels' => array(
+                'name' => __( 'Sponsors' ),
+                'singular_name' => __( 'Sponsors' ),
+                'add_new_item' => 'Add New Sponsor',
+                'edit_item' => 'Edit Sponsor',
+                'view_item' => 'View Sponsor',
+                'search_items' => 'Search Sponsors',
+                'not_found' => 'No sponsors found.',
+                'not_found_in_trash' => 'No sponsors found in Trash.'
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'sponsors'),
+            'hierarchical' => false,
+            'taxonomies' => array('category')
+        )
+    );
+    //flush_rewrite_rules(false);
+}
+// End create custom post type for Sponsors
+
 //widget support for a right sidebar
-register_sidebar(array(
-  'name' => 'Right SideBar',
-  'id' => 'right-sidebar',
-  'description' => 'Widgets in this area will be shown on the right-hand side.',
-  'before_widget' => '<div id="%1$s">',
-  'after_widget'  => '</div>',  
-  'before_title' => '<h3>',
-  'after_title' => '</h3>'
-));
+// register_sidebar(array(
+//   'name' => 'Right SideBar',
+//   'id' => 'right-sidebar',
+//   'description' => 'Widgets in this area will be shown on the right-hand side.',
+//   'before_widget' => '<div id="%1$s">',
+//   'after_widget'  => '</div>',  
+//   'before_title' => '<h3>',
+//   'after_title' => '</h3>'
+// ));
 
 //widget support for the footer
 register_sidebar(array(
@@ -99,13 +126,13 @@ register_sidebar(array(
 ));
 
 //This theme uses post thumbnails
-add_theme_support( 'post-thumbnails' );
+// add_theme_support( 'post-thumbnails' );
 
 //custom featured image size
-if ( function_exists( 'add_theme_support' ) ) { 
+// if ( function_exists( 'add_theme_support' ) ) { 
 	// Generate a new thumbnail with our desired name and size
 	//add_image_size( 'projects-full', 560, 150, true );
-}
+// }
 
 //Apply do_shortcode() to widgets so that shortcodes will be executed in widgets
 add_filter('widget_text', 'do_shortcode');
@@ -164,132 +191,132 @@ function s8_content_limit($limit) {
 /*---------------------------------------  ---------------------------------------*/
 
 
-/*--------------------------------------- TWITTER ---------------------------------------*/
-function s8_wp_get_twitter($name='twitter', $number='1'){
-    require_once (ABSPATH . WPINC . '/class-feed.php');
-    $feed = new SimplePie();
-    $feed->enable_cache(false); // This gets rid of some warnings that were showing up.
-    $feed->set_feed_url('http://twitter.com/statuses/user_timeline/'.$name.'.rss');
-    $feed->set_file_class('WP_SimplePie_File');
-    //$feed->set_cache_duration(600); // This shouldn't be needed if the cache is disabled.
-    $feed->init();
-    $feed->handle_content_type();
-    $items = $feed->get_items(0,$number);
-    foreach($items as $item) {
-        $tweet = $item->get_description();
-        $tweet = str_replace("{$name}: ", "", $tweet);
-        $tweet_array = explode(' ', $tweet);
-        foreach($tweet_array as $key=>$word_yo) {
-            if(substr($word_yo, 0, 1) == '@' && strlen($word_yo) > 1) {
-                if(substr($word_yo, -1) == ':')
-                    $tweet_array[$key] = '@<a href="https://twitter.com/#!/'.substr($word_yo, 1, -1).'" target="_blank">'.substr($word_yo, 1, -1).'</a>:';
-                else
-                    $tweet_array[$key] = '@<a href="https://twitter.com/#!/'.substr($word_yo, 1).'" target="_blank">'.substr($word_yo, 1).'</a>';
-            }
-            elseif(substr($word_yo, 0, 1) == '#' && strlen($word_yo) > 1) {
-                $tweet_array[$key] = '#<a href="https://twitter.com/#!/search/realtime/%23'.substr($word_yo, 1).'" target="_blank">'.substr($word_yo, 1).'</a>';
-            }
-            elseif(substr($word_yo, 0, 4) == 'http' && strlen($word_yo) > 10) {
-                $tweet_array[$key] = '<a href="'.$word_yo.'" target="_blank">'.$word_yo.'</a>';
-            }
-        }
-        $tweet = implode(' ', $tweet_array);
-        echo '<blockquote class="twitter-blockquote"><p>'.$tweet;
-        echo ' <span>'.$item->get_local_date('%m/%d @ %I:%M%p') .'</span>';
-        echo '</p></blockquote>';
-    }
-}
-/*--------------------------------------- end ---------------------------------------*/
+// /*--------------------------------------- TWITTER ---------------------------------------*/
+// function s8_wp_get_twitter($name='twitter', $number='1'){
+//     require_once (ABSPATH . WPINC . '/class-feed.php');
+//     $feed = new SimplePie();
+//     $feed->enable_cache(false); // This gets rid of some warnings that were showing up.
+//     $feed->set_feed_url('http://twitter.com/statuses/user_timeline/'.$name.'.rss');
+//     $feed->set_file_class('WP_SimplePie_File');
+//     //$feed->set_cache_duration(600); // This shouldn't be needed if the cache is disabled.
+//     $feed->init();
+//     $feed->handle_content_type();
+//     $items = $feed->get_items(0,$number);
+//     foreach($items as $item) {
+//         $tweet = $item->get_description();
+//         $tweet = str_replace("{$name}: ", "", $tweet);
+//         $tweet_array = explode(' ', $tweet);
+//         foreach($tweet_array as $key=>$word_yo) {
+//             if(substr($word_yo, 0, 1) == '@' && strlen($word_yo) > 1) {
+//                 if(substr($word_yo, -1) == ':')
+//                     $tweet_array[$key] = '@<a href="https://twitter.com/#!/'.substr($word_yo, 1, -1).'" target="_blank">'.substr($word_yo, 1, -1).'</a>:';
+//                 else
+//                     $tweet_array[$key] = '@<a href="https://twitter.com/#!/'.substr($word_yo, 1).'" target="_blank">'.substr($word_yo, 1).'</a>';
+//             }
+//             elseif(substr($word_yo, 0, 1) == '#' && strlen($word_yo) > 1) {
+//                 $tweet_array[$key] = '#<a href="https://twitter.com/#!/search/realtime/%23'.substr($word_yo, 1).'" target="_blank">'.substr($word_yo, 1).'</a>';
+//             }
+//             elseif(substr($word_yo, 0, 4) == 'http' && strlen($word_yo) > 10) {
+//                 $tweet_array[$key] = '<a href="'.$word_yo.'" target="_blank">'.$word_yo.'</a>';
+//             }
+//         }
+//         $tweet = implode(' ', $tweet_array);
+//         echo '<blockquote class="twitter-blockquote"><p>'.$tweet;
+//         echo ' <span>'.$item->get_local_date('%m/%d @ %I:%M%p') .'</span>';
+//         echo '</p></blockquote>';
+//     }
+// }
+// /*--------------------------------------- end ---------------------------------------*/
 
 
-/*--------------------------------------- Events call in ---------------------------------------*/
-function s8_get_upcoming_events($num_events) {
-  $args = array(
-    'post_type' => 'mpress_event',
-    'posts_per_page' => $num_events,
-    'orderby' => 'meta_value',
-    'meta_key' => '_mpress_event_startDate',
-    'order' => 'ASC',
-    'meta_query' => array(
-      array(
-        'key' => '_mpress_event_startDate',
-        'value' => date('Y-m-d'),
-        'compare' => '>=',
-        'type' => 'DATE',
-      ),
-    ),
-  );
-  return get_posts($args);
-}
+// /*--------------------------------------- Events call in ---------------------------------------*/
+// function s8_get_upcoming_events($num_events) {
+//   $args = array(
+//     'post_type' => 'mpress_event',
+//     'posts_per_page' => $num_events,
+//     'orderby' => 'meta_value',
+//     'meta_key' => '_mpress_event_startDate',
+//     'order' => 'ASC',
+//     'meta_query' => array(
+//       array(
+//         'key' => '_mpress_event_startDate',
+//         'value' => date('Y-m-d'),
+//         'compare' => '>=',
+//         'type' => 'DATE',
+//       ),
+//     ),
+//   );
+//   return get_posts($args);
+// }
 
-function s8_get_current_events($num_events) {
-  $args = array(
-    'post_type' => 'mpress_event',
-    'posts_per_page' => $num_events,
-    'orderby' => 'meta_value',
-    'meta_key' => '_mpress_event_startDate',
-    'order' => 'ASC',
-    'meta_query' => array(
-      array(
-        'key' => '_mpress_event_endDate',
-        'value' => date('Y-m-d'),
-        'compare' => '>=',
-        'type' => 'DATE',
-      ),
-    ),
-  );
-  return get_posts($args);
-}
+// function s8_get_current_events($num_events) {
+//   $args = array(
+//     'post_type' => 'mpress_event',
+//     'posts_per_page' => $num_events,
+//     'orderby' => 'meta_value',
+//     'meta_key' => '_mpress_event_startDate',
+//     'order' => 'ASC',
+//     'meta_query' => array(
+//       array(
+//         'key' => '_mpress_event_endDate',
+//         'value' => date('Y-m-d'),
+//         'compare' => '>=',
+//         'type' => 'DATE',
+//       ),
+//     ),
+//   );
+//   return get_posts($args);
+// }
 
-function s8_get_event_timestamp($id) {
-  $time = get_post_meta($id, '_mpress_event_startDate', true);
-  if($time) {
-    $date = explode('-', $time);
-    $year = (int) $date[0];
-    $month = (int) $date[1];
-    $day = (int) $date[2];
-    return mktime(0,0,0,$month,$day,$year);
-  }
-  return time();
-}
+// function s8_get_event_timestamp($id) {
+//   $time = get_post_meta($id, '_mpress_event_startDate', true);
+//   if($time) {
+//     $date = explode('-', $time);
+//     $year = (int) $date[0];
+//     $month = (int) $date[1];
+//     $day = (int) $date[2];
+//     return mktime(0,0,0,$month,$day,$year);
+//   }
+//   return time();
+// }
 
-function s8_get_event_end_timestamp($id) {
-  $time = get_post_meta($id, '_mpress_event_endDate', true);
-  if($time) {
-    $date = explode('-', $time);
-    $year = (int) $date[0];
-    $month = (int) $date[1];
-    $day = (int) $date[2];
-    return mktime(0,0,0,$month,$day,$year);
-  }
-  return time();
-}
-function s8_get_the_excerpt($post_id) {
-  global $post;  
-  $save_post = $post;
-  $post = get_post($post_id);
-  setup_postdata($post);
-  $output = get_the_excerpt();
-  $post = $save_post;
-  return $output;
-}
+// function s8_get_event_end_timestamp($id) {
+//   $time = get_post_meta($id, '_mpress_event_endDate', true);
+//   if($time) {
+//     $date = explode('-', $time);
+//     $year = (int) $date[0];
+//     $month = (int) $date[1];
+//     $day = (int) $date[2];
+//     return mktime(0,0,0,$month,$day,$year);
+//   }
+//   return time();
+// }
+// function s8_get_the_excerpt($post_id) {
+//   global $post;  
+//   $save_post = $post;
+//   $post = get_post($post_id);
+//   setup_postdata($post);
+//   $output = get_the_excerpt();
+//   $post = $save_post;
+//   return $output;
+// }
 
-function s8_get_event_address($id) {
-  $streetAddr = get_post_meta($id, '_mpress_event_streetAddress', true);
-  $addrLocation = get_post_meta($id, '_mpress_event_addressLocality', true);
-  $addrRegion = get_post_meta($id, '_mpress_event_addressLocality', true);
-  $addrZip = get_post_meta($id, '_mpress_event_postalCode', true);
-  echo '<!--';
-  echo $streetAddr . ' | '.$addrLocation. ' | '.$addrRegion. ' | '.$addrZip;
-  echo '-->';
-  $output = array();
-  if($streetAddr) $output[] = $streetAddr;
-  if($addrLocation) $output[] = $addrLocation;
-  $tmp = array();
-  if($addrRegion) $tmp[] = $addrRegion;
-  if($addrZip) $tmp[] = $addrZip;
-  if(count($tmp) > 1) $output[] = implode(' ', $tmp);
-  elseif(count($tmp) == 1) $output[] = $tmp[0];
-  return implode(', ', $output);
-}
+// function s8_get_event_address($id) {
+//   $streetAddr = get_post_meta($id, '_mpress_event_streetAddress', true);
+//   $addrLocation = get_post_meta($id, '_mpress_event_addressLocality', true);
+//   $addrRegion = get_post_meta($id, '_mpress_event_addressLocality', true);
+//   $addrZip = get_post_meta($id, '_mpress_event_postalCode', true);
+//   echo '<!--';
+//   echo $streetAddr . ' | '.$addrLocation. ' | '.$addrRegion. ' | '.$addrZip;
+//   echo '-->';
+//   $output = array();
+//   if($streetAddr) $output[] = $streetAddr;
+//   if($addrLocation) $output[] = $addrLocation;
+//   $tmp = array();
+//   if($addrRegion) $tmp[] = $addrRegion;
+//   if($addrZip) $tmp[] = $addrZip;
+//   if(count($tmp) > 1) $output[] = implode(' ', $tmp);
+//   elseif(count($tmp) == 1) $output[] = $tmp[0];
+//   return implode(', ', $output);
+// }
 ?>

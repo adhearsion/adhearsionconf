@@ -106,7 +106,7 @@
 	}
 	.subheader { color: #777; }
 
-	p { margin: 0 0 20px 0; text-shadow: 1px 1px white; }
+	/*p { margin: 0 0 20px 0; text-shadow: 1px 1px white; }*/
 	p img { margin: 0; }
 	p.lead { font-size: 21px; line-height: 27px; color: #333;  }
 
@@ -303,8 +303,8 @@ article { font-size: 14px; }
 		}
 
     article.subpage { padding-top: 0; }
-    article.subpage div.title h3, div.title h3  { font-size: 42px; line-height: 42px; font-weight: normal; margin-bottom: 10px; color: #89467D; text-shadow: 1px 1px white; border-bottom: none; }
-     article.subpage div.title a h3, div.title a h3  { font-size: 42px; line-height: 42px; font-weight: normal; margin-bottom: 10px; color: #327CBA; text-shadow: 1px 1px white; border-bottom: none; }
+    article.subpage div.title h3, div.title h3  { font-size: 42px; line-height: 42px; font-weight: normal; margin-bottom: 10px; color: #89467D; border-bottom: none; }
+     article.subpage div.title a h3, div.title a h3  { font-size: 42px; line-height: 42px; font-weight: normal; margin-bottom: 10px; color: #327CBA; border-bottom: none; }
      article.subpage div.title a:hover h3, div.title a:hover h3 { color: #89467D;}
     .full-width{
         padding-left: 10px;
@@ -345,7 +345,7 @@ article { font-size: 14px; }
 	width: 100%;
 	background: #7C326F url('../images/gradient-big-footer.gif') top repeat-x;
 	color: #CDACC8;
-	text-shadow: 1px 1px #732E67;
+	/*text-shadow: 1px 1px #732E67;*/
 	padding-top: 20px;
 	min-height: 200px;
 	padding-bottom: 20px;
@@ -361,7 +361,7 @@ article { font-size: 14px; }
 	min-width: 960px;
 }
 .footer h2 { color: #ECE7EB;
-	text-shadow: 1px 1px #712B65;
+	/*text-shadow: 1px 1px #712B65;*/
 	margin-bottom: 15px;
 	font-size: 19px;
 	line-height: 27px;
