@@ -59,7 +59,7 @@
 
 			<div class="logo">
 				<a href="<?php echo home_url(); ?>" class="">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/logo.png"
+					<img src="<?php echo get_field('logo', 'options'); ?>"
 					alt="<?php echo get_bloginfo('description');?>"
 					title="<?php echo get_bloginfo('name');?>"
 					class="" />
@@ -68,6 +68,7 @@
 		</div>
 
 		<div class="twelve columns omega menu-primary-desktop container-wrapper">
+			<div class="header-quote">Building the Voice Applications of Tomorrow</div> 
 			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 			<div style="clear: both"></div>
 		</div>

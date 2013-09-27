@@ -274,18 +274,27 @@ body {
     text-align: right;
 }
 
+.header .header-quote {
+    margin: 10px 0;
+    line-height: 41px;
+    font-size: 1.5em;
+    text-align: center;
+    font-style: italic;
+    color: #61c1e7;
+    text-shadow: 1px 1px 6px black;
+}
+
 .menu-primary-desktop {
-    margin-top: 61px;
     margin-left: 0;
 }
 
 #menu-header-menu li a, h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lato';
+    font-family: 'Lato' !important;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5) !important;
     color: #800080;
 }
 
-#menu-header-menu li {
+#menu-header-menu li, div.address-card, article.subpage div.image {
     display: inline-block;
     /*background-color: #e1d6de;*/
     border: 1px solid #ccc;
@@ -320,4 +329,158 @@ body {
 
 #menu-header-menu {
     margin: 0;
+}
+
+table.purple th {
+    font-weight: bold;
+    padding-bottom: 6px;
+}
+
+table.purple tr {
+    border-bottom: 1px solid #ccc;
+}
+
+table.purple tr td:first-of-type, table.purple tr td:last-of-type {
+    width: 20%;
+}
+
+table.purple tr td:first-of-type {
+    padding-left: 5px;
+}
+
+table.purple tr td:last-of-type {
+    text-align: center;
+    color: #333;
+    padding: 0 5px;
+}
+
+table.purple .session h4 {
+    margin-bottom: 0;
+    font-size: 1.1em;
+    color: #333;
+}
+
+table.purple .session p, table.purple .bio p {
+    font-size: 0.8em;
+    line-height: 1.5em;
+    margin-bottom: 3px;
+    text-shadow: 1px 2px 3px rgba(137,70,145,0.6);
+    font-style: italic;
+}
+
+table.purple tr.even {
+    background-color: rgba(137,70,145,0.2);
+}
+
+table.purple tr.odd {
+    background-color: rgba(137,70,145,0.4);
+}
+
+table.purple tr:hover a {
+    color: rgb(50,124,186);
+    text-shadow: 1px 1px 2px rgb(97,193,231);
+}
+
+table.purple tr:hover {
+    background-color: rgba(97,193,231,0.3);
+}
+
+table.purple tr:first-of-type:hover {
+    background-color: rgba(255,255,255,0);
+}
+
+table.purple a, article.subpage div.title h4.speakers a, article.subpage div.image a, div.address-card a {
+    font-family: 'Lato';
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    color: rgb(137,70,125);
+}
+
+table.purple a, article.subpage div.title h4.speakers a {
+    font-size: 1.1em;
+}
+
+table.purple a {
+    color: #800080;
+}
+
+table.purple a:hover, article.subpage div.title h4.speakers a:hover, article.subpage div.image a:hover, div.address-card a:hover {
+    text-shadow: none;
+    text-decoration: underline;
+}
+
+article.subpage div.title h4 {
+    color: #89467D;
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+article.subpage div.title h4.time {
+    color: #666;
+    font-size: 1.2em;
+    font-style: normal;
+}
+
+article.subpage div.title h4.speakers {
+    color: #89467D;
+    font-size: 1.2em;
+    font-style: normal;
+}
+
+h3.newday {
+    margin-top: 8px;
+    color: rgb(137,70,125);
+}
+
+article.subpage div.title div.sessions {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    width: 50%;
+    border-bottom: 1px solid #ccc;
+}
+
+div.address-card {
+    display: table;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+div.address-card a {
+    font-size: 1.5em;
+}
+
+div.address-card .alignright {
+    float: right;
+}
+
+div.address-card .address {
+    vertical-align: middle;
+    display: table-cell;
+}
+
+ul.speaker-links {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+ul.speaker-links li {
+    font-size: 0.9em;
+    line-height: 0.7em;
+}
+
+article.subpage div.image {
+    float: right;
+    padding: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+html body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
 }

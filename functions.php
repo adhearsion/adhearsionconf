@@ -26,11 +26,7 @@ register_nav_menu( 'footer-2', 'Footer Menu 2' );
 // ACF Customizations
 if( function_exists('acf_add_options_sub_page') )
 {
-    acf_add_options_sub_page( 'Chamber Information' );
-    acf_add_options_sub_page( 'Sidebar Settings' );
-    acf_add_options_sub_page( 'Signature Events' );
-    acf_add_options_sub_page( 'Social Media' );
-    acf_add_options_sub_page( 'Footer Content' );
+    acf_add_options_sub_page( 'Site Information' );
 }
 // End ACF Customizations
 
@@ -50,7 +46,7 @@ function create_post_type_events() {
                 'not_found_in_trash' => 'No events found in Trash.'
             ),
             'public' => true,
-            'has_archive' => true,
+            'has_archive' => false,
             'rewrite' => array('slug' => 'events')
         )
     );
@@ -73,7 +69,7 @@ function create_post_type_speakers() {
                 'not_found_in_trash' => 'No speakers found in Trash.'
             ),
             'public' => true,
-            'has_archive' => true,
+            'has_archive' => false,
             'rewrite' => array('slug' => 'speakers')
         )
     );
@@ -107,8 +103,8 @@ add_theme_support( 'post-thumbnails' );
 
 //custom featured image size
 if ( function_exists( 'add_theme_support' ) ) { 
-  // Generate a new thumbnail with our desired name and size
-  //add_image_size( 'projects-full', 560, 150, true );
+	// Generate a new thumbnail with our desired name and size
+	//add_image_size( 'projects-full', 560, 150, true );
 }
 
 //Apply do_shortcode() to widgets so that shortcodes will be executed in widgets
