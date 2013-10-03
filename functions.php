@@ -17,6 +17,17 @@
 //include_once (TEMPLATEPATH.'/metaboxes/radio-spec.php');
 //include_once (TEMPLATEPATH.'/metaboxes/select-spec.php');
 
+
+
+wp_deregister_script('jquery');
+wp_register_script('jquery', ("//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"), false, '1.10.2');
+//wp_register_script('jquery', ("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"), false, '1.7.2');
+wp_enqueue_script('jquery');
+
+wp_register_script('bootstrap-carousel', (get_template_directory_uri().'/js/bootstrap.min.js'), array('jquery'), null);
+wp_enqueue_script('bootstrap-carousel');
+
+
 // drag and drop menu support
 register_nav_menu( 'primary', 'Primary Menu' );
 // register_nav_menu( 'sidebar', 'Sidebar Menu' );

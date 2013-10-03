@@ -22,10 +22,7 @@
 
 				<div class="eight columns">
 					<h2>Latest Tweets</h2>
-					<?php 
-						//go to Widgets and add the Twitter one
-						dynamic_sidebar('Twitter');
-					?>
+					<?php echo do_shortcode('[kebo_tweets]'); ?>
 				</div>
 
 				<div class="four columns omega">

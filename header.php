@@ -29,9 +29,10 @@
 
 	<!-- CSS
 	================================================== -->
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/stylesheets/base.css">
-	<link rel="stylesheet" href= "<?php echo get_template_directory_uri(); ?>/style.css">
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/stylesheets/layout.css">
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/stylesheets/base.css" />
+	<link rel="stylesheet" href= "<?php echo get_template_directory_uri(); ?>/style.css" />
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/stylesheets/layout.css" />
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/bootstrap.min.css" />
 
 	<!-- Favicons
 	================================================== -->
@@ -45,7 +46,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
-<?php wp_head(); ?>
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>

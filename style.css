@@ -288,10 +288,16 @@ body {
     margin-left: 0;
 }
 
-#menu-header-menu li a, h1, h2, h3, h4, h5, h6 {
+#menu-header-menu li a {
     font-family: 'Lato' !important;
     /*text-shadow: 1px 1px 3px rgba(0,0,0,0.5) !important;*/
     color: #800080;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato' !important;
+    /*text-shadow: 1px 1px 3px rgba(0,0,0,0.5) !important;*/
+    color: #89467D
 }
 
 #menu-header-menu li:hover  {
@@ -573,4 +579,21 @@ ol li {
 
 h3.sponsor-type {
     margin-bottom: 0;
+}
+.checklist li:before {
+    content: "✓";
+    padding-right: 5px;
+}
+
+.grey, strong, h2, h3, h4, h5, h6 {
+    color: #666;
+}
+
+.carousel-caption h4 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+article img {
+    max-width:100%;
 }

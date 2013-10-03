@@ -7,9 +7,9 @@
 <!--<div class="one-third column omega" id="side">-->
 <div class="offset-by-one four columns alpha" id="side"> 
 	<?php
-		$core_sponsors = get_field('core_sponsors', 'options');
-		$edge_sponsors = get_field('edge_sponsors', 'options');
-		$network_element_sponsors = get_field('network_element_sponsors', 'options');
+		$core_sponsors = get_field('core_sponsors_side', 'options');
+		$edge_sponsors = get_field('edge_sponsors_side', 'options');
+		$network_element_sponsors = get_field('network_element_sponsors_side', 'options');
 		if (get_field('link_to', 'options') == "internal") {
 			$external_link = false;
 		} else {
